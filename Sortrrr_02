@@ -1,0 +1,74 @@
+#!/usr/bin/env ruby
+
+if ARGV.length == 0 then
+  puts "sadface, no numz."
+  exit
+end
+
+numz = ARGV
+
+def splitz(array)
+  half = array.length / 2
+  puts "Half the array is #{half}"
+  array2 = array.pop(half)
+  return array, array2
+end
+
+def sortz(numz)
+  sortednumz = []
+	if numz[0].to_i < numz[1].to_i then
+	  sortednumz[0],sortednumz[1] = numz[0], numz[1]
+	else
+	  sortednumz[1],sortednumz[0] = numz[0], numz[1]
+	end
+  return sortednumz
+end
+
+def mergge(numz1,numz2)
+  sortedNumberz = []
+  sortedNumzLength = numz1.length + numz2.length
+
+  puts "NUMz1 = #{numz1} and NUMZ2 #{numz2}"
+  i = 0 # for num1
+  j = 0 # for num2
+  for k in 0..(sortedNumzLength - 1) do  # length of combined arrays
+    puts "SortedNumz position --  #{k}"
+    puts "I is #{i} and J is #{j}"
+    puts "Looking at #{numz1[i]} and #{numz2[j]}"
+    if numz1[i].nil? then
+      puts "numz1 i is nill"
+      sortedNumberz[k] = numz2[j]
+      puts "no more numz1 / i - putting numz2[j] in sortedNumz #{sortedNumberz}"
+    elsif numz2[j].nil? then
+      puts "numz2 j is nill"
+      sortedNumberz[k] = numz1[i]
+      puts "no more numz2 / j - putting numz1[i] in sortedNumz #{sortedNumberz}"
+    elsif numz1[i] <= numz2[j] then
+      puts "numz1 i is smaller - putting to next position #{k} of sortedNumz"
+      sortedNumberz[k] = numz1[i]
+      i += 1
+      puts "SOFAR - #{sortedNumberz}"
+    else 
+      puts "numz2 / j is smaller - putting to next position #{k} of sortedNumz"
+      sortedNumberz[k] = numz2[j]
+      j += 1
+      puts "SOFAR - #{sortedNumberz}"
+    end
+  end
+ puts "SOFAR - #{sortedNumberz}"
+ return sortedNumberz
+end
+
+def mergeSort(numz)
+	if numz.length <= 1
+	  puts "COUNT OF ONE"
+	  return numz
+  end 
+  numz1, numz2 = splitz(numz)
+  numz1 = mergeSort(numz1)
+  numz2 = mergeSort(numz2)
+  return mergge(numz1,numz2)
+end
+
+whatnumz = mergeSort(numz)
+puts "WHATZIGOT -- #{whatnumz}"

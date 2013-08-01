@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+if ARGV.length == 0 then
+  puts "sadface, no numz."
+  exit
+end
+
+numz = ARGV
+numzlength = ARGV.length
+sortednumz = []
+
+#puts "\n"
+puts "Unsorted numbers = #{numz}"
+#puts "Unsorted numbers length = #{numzlength}\n"
+
+if numzlength > 2 then
+  if numz[0].to_i > numz[1].to_i then
+    sortednumz[0],sortednumz[1] = numz[1],numz[0]
+  else
+    sortednumz[0],sortednumz[1] = numz[0],numz[1]
+  end
+
+  numz[2..-1].each do |r|
+    #puts "\n\nRemaining numz: #{r}"
+    #puts "SORTEDDDDDD::: #{sortednumz}"
+    (0..(sortednumz.length-1)).each do |s|
+      #puts "Comparing #{r} with #{sortednumz[s]}"
+      if r.to_i > sortednumz[s].to_i then
+        #puts "BIGGGER #{r} -> #{sortednumz[s]}"
+        if sortednumz[s] == sortednumz[-1] then
+          sortednumz << r
+          break
+        end
+        next
+      else
+        #puts "R is #{r} and S is #{s}"
+        sortednumz.insert(s,r)
+        #puts "SORTED NOW #{sortednumz}"
+        break
+      end
+    end
+  end
+end
+
+puts "\nSortednumz #{sortednumz}"

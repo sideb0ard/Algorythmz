@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+
+def merge(array1,array2)
+  puts "\n\nBEGIN MERGE - I GOTS #{array1} and #{array2}"
+  sortedArray = []
+  puts "START SORTED ARRAY = #{sortedArray}"
+  while array1.length > 0 or array2.length > 0 do
+    if array1.length > 0 and array2.length > 0
+      if array1.first <= array2.first then
+        puts "SORTED ARRAY before push = #{sortedArray}"
+        sortedArray.push(array1.first)
+        puts "SORTED ARRAY after push = #{sortedArray}"
+        puts "in MERGR while and #{array1.first} is smaller - adding to sorted #{sortedArray}"
+        array1.delete_at(0)
+      else
+        puts "SORTED ARRAY before push = #{sortedArray}"
+        sortedArray.push(array2.first)
+        puts "SORTED ARRAY after push = #{sortedArray}"
+        puts "in MERGE while and #{array2.first} is smaller - adding to sorted #{sortedArray}"
+        array2.delete_at(0)
+      end
+    elsif array1.length > 0
+      puts "in MERGE - No more array2 adding #{array1.first} to sorted #{sortedArray}"
+      sortedArray.push(array1.first)
+      array1.delete_at(0)
+    else
+      puts "in MERGE -- No more array1 adding #{array1.first} to sorted #{sortedArray}"
+      sortedArray.push(array2.first)
+      array2.delete_at(0)
+    end
+  end
+  puts "END MERGE\n\n"
+  return sortedArray
+end
+
+def mergeSort(array)
+  if array.length <= 1 then
+    return array
+  end
+  half = array.length / 2
+  array2 = array.pop(half)
+
+  # RECURSIVE CALL TILL THEY ARE SMALLER THAN 2
+  array = mergeSort(array)
+  array2 = mergeSort(array2)
+
+  return merge(array,array2)
+end
+
+
+numzArray = ARGV.map{ |x| x.to_i}
+allSorts = mergeSort(numzArray)
+
+puts "SORTED, MATE -- #{allSorts}"
+    
+
