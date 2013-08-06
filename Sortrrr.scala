@@ -47,6 +47,7 @@ object mergeSortProg {
     println("ListOne iz " + listOne.mkString(" "))
     println("ListTwo iz " + listTwo.mkString(" "))
 
+    // heres the recursive magic ...
     return(merge(mergeSort(listOne),mergeSort(listTwo)))
   }
 }
