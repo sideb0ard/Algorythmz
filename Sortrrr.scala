@@ -28,7 +28,7 @@ object mergeSortProg {
         l2_buffer remove 0
       }
     }
-    println("About to return == sortedList = " + sortedList.length)
+    println("About to return == sortedList = " + sortedList.mkString(" "))
     return sortedList.toList
   }
 
@@ -55,4 +55,4 @@ object mergeSortProg {
 val intz: List[Int] = args.map(_.toInt).toList
 
 val sortedIntz: List[Int] = mergeSortProg.mergeSort(intz)
-println("Sorted, mate -- " + sortedIntz.mkString(" "))
+println("\nSorted, mate -- " + sortedIntz.mkString(" ") + "\n")
