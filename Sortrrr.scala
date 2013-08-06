@@ -1,5 +1,7 @@
 object mergeSortProg {
 
+  //def merge(array1
+
   def mergeSort(intz: List[Int]): List[Int] = {
 
     if (intz.length <= 1)
@@ -11,14 +13,14 @@ object mergeSortProg {
     println("HALF LENGTH is " + halfSize)
 
     val splitTuple = intz splitAt halfSize 
-    val listOne: List[Int] = splitTuple._1
-    val listTwo: List[Int] = splitTuple._2
+    var listOne: List[Int] = splitTuple._1
+    var listTwo: List[Int] = splitTuple._2
 
     println("ListOne iz " + listOne.mkString(" "))
     println("ListTwo iz " + listTwo.mkString(" "))
 
-    // listOne = mergeSort(listOne)
-    // listTwo = mergeSort(listTwo)
+    listOne = mergeSort(listOne)
+    listTwo = mergeSort(listTwo)
 
     //if (intzList.length <= 1)
     //  return intzList
