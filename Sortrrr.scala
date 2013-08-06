@@ -1,4 +1,5 @@
 import scala.collection.mutable.ListBuffer
+
 object mergeSortProg {
 
   def merge(l1: List[Int], l2: List[Int]): List[Int] = {
