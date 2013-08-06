@@ -35,24 +35,19 @@ object mergeSortProg {
 
   def mergeSort(intz: List[Int]): List[Int] = {
 
+    // If list is one or less, then return - otherwise split in half and recursively call ourselves. 
+    // When whole list is split into single numbers, then return back up tree merging results
+
     if (intz.length <= 1)
       return intz
 
-    println("LENGTH is " + intz.length)
-
     val halfSize = intz.length / 2
-    println("HALF LENGTH is " + halfSize)
-
     val (listOne,listTwo) = intz splitAt halfSize
 
     println("ListOne iz " + listOne.mkString(" "))
     println("ListTwo iz " + listTwo.mkString(" "))
 
-    val l1 = mergeSort(listOne)
-    val l2 = mergeSort(listTwo)
-
-    val sortedList: List[Int] = merge(l1,l2)
-    return sortedList
+    return(merge(mergeSort(listOne),mergeSort(listTwo)))
   }
 }
 
